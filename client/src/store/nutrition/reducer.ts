@@ -16,7 +16,7 @@ const sort = (array: any[], prop: string): any[] => {
   const _array = [...array];
 
   for (let i = 0; i < _array.length; ++i) {
-    for (let j = 0; j < _array.length; ++j) {
+    for (let j = i + 1; j < _array.length; ++j) {
       if (_array[i][prop] < _array[j][prop]) {
         [_array[i], _array[j]] = [_array[j], _array[i]];
       }
