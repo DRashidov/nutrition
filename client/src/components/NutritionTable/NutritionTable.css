@@ -23,6 +23,10 @@
 .nutrition-table__label_sortable {
   font-weight: 700;
   cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: nowrap;
 }
 
 .nutrition-table__label_sortable .sort-icon {
