@@ -14,6 +14,9 @@ export const Row: React.FC<RowProps> = ({ dessert }) => {
   const dispatch = useDispatch();
 
   const labels = dessert ? [dessert.name, ...Object.values(dessert.info)] : [];
+  
+  
+
   labels.pop();
 
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {

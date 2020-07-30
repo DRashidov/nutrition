@@ -12,6 +12,20 @@ const initialState: INutritionState = {
   selectedIds: [],
 };
 
+const sort = (array: any[], prop: string): any[] => {
+  const _array = [...array];
+
+  for (let i = 0; i < _array.length; ++i) {
+    for (let j = 0; j < _array.length; ++j) {
+      if (_array[i][prop] < _array[j][prop]) {
+        [_array[i], _array[j]] = [_array[j], _array[i]];
+      }
+    }
+  }
+
+  return _array;
+};
+
 export const nutrition = (state: INutritionState = initialState, action: NutritionActionTypes): INutritionState => {
   switch (action.type) {
     case type.SET_NUTRITION:
@@ -36,6 +50,19 @@ export const nutrition = (state: INutritionState = initialState, action: Nutriti
         ...state,
         selectedIds: [],
       };
+
+    case type.SORT_NUTRITION: {
+      const name = action.payload;
+      const flat = state.nutritionList?.map(({ id, name, info }) => ({ id, name, ...info })) ?? [];
+      const sorted = sort(flat, name);
+      const nutritionList = sorted.map(({ id, name, ...info }) => ({ id, name, info })) as Nutrition[];
+
+      return {
+        ...state,
+        nutritionList,
+        selectedIds: [],
+      };
+    }
 
     default:
       return state;
